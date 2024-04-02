@@ -9,4 +9,12 @@ logs
 reference
 GPT_weights
 SoVITS_weights
+
 TEMP
+
+samples.zip
+audios
+download.sh
+gweight.txt
+sweight.txt
+tools/damo_asr/

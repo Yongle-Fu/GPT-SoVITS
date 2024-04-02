@@ -2,6 +2,10 @@
 # api.py usage
 
 ` python api.py -dr "123.wav" -dt "一二三。" -dl "zh" `
+` python api.py -dr "audios/raw/yjc_74s.wav" -dt "那么脑机接口技术它整体是一个" -dl "zh" `
+` python api.py -dr "audios/raw/yjc_1_2.wav" -dt "他1933年出生在美国" -dl "zh" `
+` python api.py -dr "audios/raw/yjc_1_2.wav" -dt "助眠方案将持续30分钟。" -dl "zh" `
+` python api.py -dr "audios/raw/device/please_manual_ces.wav" -dt "请手动开启CES助眠功能" -dl "zh" `
 
 ## 执行参数:
 

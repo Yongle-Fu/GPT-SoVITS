@@ -8,6 +8,8 @@ import signal
 
 warnings.filterwarnings("ignore")
 torch.manual_seed(233333)
+print(f"torch.cuda.is_available():{torch.cuda.is_available()}，version: {torch.__version__}，cuda: {torch.version.cuda}")
+
 tmp = os.path.join(now_dir, "TEMP")
 os.makedirs(tmp, exist_ok=True)
 os.environ["TEMP"] = tmp
@@ -692,7 +694,7 @@ with gr.Blocks(title="GPT-SoVITS WebUI") as app:
             gr.Markdown(value=i18n("0b-语音切分工具"))
             with gr.Row():
                 with gr.Row():
-                    slice_inp_path=gr.Textbox(label=i18n("音频自动切分输入路径，可文件可文件夹"),value="")
+                    slice_inp_path=gr.Textbox(label=i18n("音频自动切分输入路径，可文件可文件夹"),value="output/denoise_opt")
                     slice_opt_root=gr.Textbox(label=i18n("切分后的子音频的输出根目录"),value="output/slicer_opt")
                     threshold=gr.Textbox(label=i18n("threshold:音量小于这个值视作静音的备选切割点"),value="-34")
                     min_length=gr.Textbox(label=i18n("min_length:每段最小多长，如果第一段太短一直和后面段连起来直到超过这个值"),value="4000")
@@ -710,7 +712,7 @@ with gr.Blocks(title="GPT-SoVITS WebUI") as app:
             with gr.Row():
                 open_denoise_button = gr.Button(i18n("开启语音降噪"), variant="primary",visible=True)
                 close_denoise_button = gr.Button(i18n("终止语音降噪进程"), variant="primary",visible=False)
-                denoise_input_dir=gr.Textbox(label=i18n("降噪音频文件输入文件夹"),value="")
+                denoise_input_dir=gr.Textbox(label=i18n("降噪音频文件输入文件夹"),value="audios/src")
                 denoise_output_dir=gr.Textbox(label=i18n("降噪结果输出文件夹"),value="output/denoise_opt")
                 denoise_info = gr.Textbox(label=i18n("语音降噪进程输出信息"))
             gr.Markdown(value=i18n("0c-中文批量离线ASR工具"))
@@ -721,7 +723,7 @@ with gr.Blocks(title="GPT-SoVITS WebUI") as app:
                     with gr.Row():
                         asr_inp_dir = gr.Textbox(
                             label=i18n("输入文件夹路径"),
-                            value="D:\\GPT-SoVITS\\raw\\xxx",
+                            value="output/slicer_opt",
                             interactive=True,
                         )
                         asr_opt_dir = gr.Textbox(
@@ -765,7 +767,7 @@ with gr.Blocks(title="GPT-SoVITS WebUI") as app:
                 if_label = gr.Checkbox(label=i18n("是否开启打标WebUI"),show_label=True)
                 path_list = gr.Textbox(
                     label=i18n(".list标注文件的路径"),
-                    value="D:\\RVC1006\\GPT-SoVITS\\raw\\xxx.list",
+                    value="C:\\Users\\Administrator\\Desktop\\GPT-SoVITS\\output\\asr_opt\\slicer_opt.list",
                     interactive=True,
                 )
                 label_info = gr.Textbox(label=i18n("打标工具进程输出信息"))
@@ -788,10 +790,9 @@ with gr.Blocks(title="GPT-SoVITS WebUI") as app:
             with gr.TabItem(i18n("1A-训练集格式化工具")):
                 gr.Markdown(value=i18n("输出logs/实验名目录下应有23456开头的文件和文件夹"))
                 with gr.Row():
-                    inp_text = gr.Textbox(label=i18n("*文本标注文件"),value=r"D:\RVC1006\GPT-SoVITS\raw\xxx.list",interactive=True)
+                    inp_text = gr.Textbox(label=i18n("*文本标注文件"),value="C:\\Users\\Administrator\\Desktop\\GPT-SoVITS\\output\\asr_opt\\slicer_opt.list",interactive=True)
                     inp_wav_dir = gr.Textbox(
                         label=i18n("*训练集音频文件目录"),
-                        # value=r"D:\RVC1006\GPT-SoVITS\raw\xxx",
                         interactive=True,
                         placeholder=i18n("填切割后音频所在目录！读取的音频文件完整路径=该目录-拼接-list文件里波形对应的文件名（不是全路径）。如果留空则使用.list文件里的绝对全路径。")
                     )

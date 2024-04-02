@@ -573,7 +573,7 @@ with gr.Blocks(title="GPT-SoVITS WebUI") as app:
             )
         gr.Markdown(value=i18n("*请填写需要合成的目标文本和语种模式"))
         with gr.Row():
-            text = gr.Textbox(label=i18n("需要合成的文本"), value="")
+            text = gr.Textbox(label=i18n("需要合成的文本"), value="先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。")
             text_language = gr.Dropdown(
                 label=i18n("需要合成的语种"), choices=[i18n("中文"), i18n("英文"), i18n("日文"), i18n("中英混合"), i18n("日英混合"), i18n("多语种混合")], value=i18n("中文")
             )
@@ -599,7 +599,7 @@ with gr.Blocks(title="GPT-SoVITS WebUI") as app:
 
         gr.Markdown(value=i18n("文本切分工具。太长的文本合成出来效果不一定好，所以太长建议先切。合成会根据文本的换行分开合成再拼起来。"))
         with gr.Row():
-            text_inp = gr.Textbox(label=i18n("需要合成的切分前文本"), value="")
+            text_inp = gr.Textbox(label=i18n("需要合成的切分前文本"), value="先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。")
             button1 = gr.Button(i18n("凑四句一切"), variant="primary")
             button2 = gr.Button(i18n("凑50字一切"), variant="primary")
             button3 = gr.Button(i18n("按中文句号。切"), variant="primary")
@@ -614,7 +614,8 @@ with gr.Blocks(title="GPT-SoVITS WebUI") as app:
         gr.Markdown(value=i18n("后续将支持转音素、手工修改音素、语音合成分步执行。"))
 
 app.queue(concurrency_count=511, max_size=1022).launch(
-    server_name="0.0.0.0",
+    # server_name="0.0.0.0",
+    server_name="127.0.0.1",
     inbrowser=True,
     share=is_share,
     server_port=infer_ttswebui,

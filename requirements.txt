@@ -14,7 +14,12 @@ cn2an
 pypinyin
 pyopenjtalk
 g2p_en
-torchaudio
+
+# pip install torch==2.2.1 torchaudio==2.2.1 torchvision==0.17.1 --index-url https://download.pytorch.org/whl/cu118
+torch==2.2.1 
+torchaudio==2.2.1
+torchvision==0.17.1 
+
 modelscope==1.10.0
 sentencepiece
 transformers

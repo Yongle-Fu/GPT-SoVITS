@@ -21,6 +21,7 @@ if torch.cuda.is_available():
     infer_device = "cuda"
 else:
     infer_device = "cpu"
+print(f"Using {infer_device} for inference")    
 
 webui_port_main = 9874
 webui_port_uvr5 = 9873
